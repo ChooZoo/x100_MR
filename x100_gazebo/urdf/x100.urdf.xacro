@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot name="X100" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find x100_gazebo)/urdf/wheel.urdf.xacro"/>
+    <xacro:property name="wheel_x_distance" value="0.490" />
+    <xacro:property name="wheel_y_distance" value="0.316" />
+    <xacro:property name="wheel_radius" value="0.13" />
+    <xacro:property name="wheel_height" value="0.1" />
+    <xacro:property name="M_PI" value="3.14159"/>
+
+    <xacro:property name="scale" value="1.0" />
+
+  <!-- Length along X-axis, Width along Y-axis, Height along Z-axis -->
+  <xacro:property name="x100_width" value="${scale * 0.4}" />
+  <xacro:property name="x100_length" value="${scale * 0.5}" />
+  <xacro:property name="x100_height" value="${scale * 0.5}" />
+  <xacro:property name="x100_mass" value="${scale * 66}" />
+
+  <xacro:property name="base_x_offset" value="0" />
+
+  <!-- inertia = 1/12*m(h^2+d^2) -->
+  <xacro:property name="height_2" value="${x100_height * x100_height}" />
+  <xacro:property name="width_2" value="${x100_width * x100_width}" />
+  <xacro:property name="length_2" value="${x100_length * x100_length}" />
+  <xacro:property name="x100_inertia_xx" value="${x100_mass/12.0 * (height_2 + width_2)}" />
+  <xacro:property name="x100_inertia_yy" value="${x100_mass/12.0 * (height_2 + length_2)}" />
+  <xacro:property name="x100_inertia_zz" value="${x100_mass/12.0 * (width_2 + length_2)}" />
+    <link name="base_link">
+        <inertial>
+            <mass value="${x100_mass}"/>
+            <origin xyz="0 0 0.2" rpy=" 0 0 0"/>
+            <inertia
+                ixx="${x100_inertia_xx}" ixy="0" ixz="0"
+                iyy="${x100_inertia_yy}" iyz="0"
+                izz="${x100_inertia_zz}" />
+        </inertial>
+        <collision name='collision'>
+            <origin xyz="0 0 0.0" rpy=" 0 0 ${M_PI}"/>
+            <geometry>
+                <mesh filename="package://x100_gazebo/meshes/X300_body.dae" scale="1 1 1"/>
+                <!--box size="0.5 0.4 0.5"/-->
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0.0 0.0 0" rpy="0.0 0.0 ${M_PI}"/>
+            <geometry>
+                <mesh filename="package://x100_gazebo/meshes/X300_body.dae" scale="1 1 1"/>
+                <!-- box size="0.8 0.4 0.5"/-->
+            </geometry>
+        </visual>
+
+    </link>
+    <link name="base_footprint_"/>
+
+    <joint name="base_footprint_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <parent link="base_link" />
+            <child link="base_footprint_" />
+    </joint>
+
+     <xacro:x100_wheel wheel_prefix="front_left">
+        <origin xyz="${wheel_x_distance/2.0} ${wheel_y_distance/2.0}  0.0" rpy="0.0 0.0 0.0"/>
+    </xacro:x100_wheel>
+    <xacro:x100_wheel wheel_prefix="front_right">
+        <origin xyz="${wheel_x_distance/2.0} ${-wheel_y_distance/2.0}  0.0" rpy="0.0 0.0 0"/>
+    </xacro:x100_wheel>
+    <xacro:x100_wheel wheel_prefix="back_left">
+        <origin xyz="${-wheel_x_distance/2.0} ${wheel_y_distance/2.0}  0.0" rpy="0.0 0.0 0.0"/>
+    </xacro:x100_wheel>
+    <xacro:x100_wheel wheel_prefix="back_right">
+        <origin xyz="${-wheel_x_distance/2.0} ${-wheel_y_distance/2.0}  0.0" rpy="0.0 0.0 0"/>
+    </xacro:x100_wheel>
+    
+    <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+    <xacro:VLP-16 parent="base_link" name="velodyne" topic="/velodyne_points" organize_cloud="false" hz="10" samples="440" gpu="false">
+    <origin xyz="0 0 0.4" rpy="0 0 0" />
+    </xacro:VLP-16>
+    <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <legacyMode>false</legacyMode>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>100</updateRate>
+      <leftFrontJoint>front_left_wheel</leftFrontJoint>
+      <rightFrontJoint>front_right_wheel</rightFrontJoint>
+      <leftRearJoint>back_left_wheel</leftRearJoint>
+      <rightRearJoint>back_right_wheel</rightRearJoint>
+      <wheelSeparation>0.31</wheelSeparation>
+      <wheelDiameter>0.26</wheelDiameter>
+      <torque>80.0</torque>
+       <MaxForce>80.0</MaxForce>
+      <publishWheelTF>true</publishWheelTF>
+      <publishWheelJointState>true</publishWheelJointState>
+      <commandTopic>/cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>x100/base_link</robotBaseFrame>
+      <broadcastTF>true</broadcastTF>
+    </plugin>
+  </gazebo>
+    
+</robot>
