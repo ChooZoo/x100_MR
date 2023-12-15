@@ -1,9 +1,16 @@
+<!-- autor: Tarik Pozderac -->
+
 <launch>
+
+
+<!-- Pocetna pozicija X100 robota -->
   <arg name="x100_x_pos" default=" 0.5"/>
   <arg name="x100_y_pos" default=" 3.0"/>
   <arg name="x100_z_pos" default=" 0.0"/>
   <arg name="x100_yaw"   default=" 0.0"/>
 
+
+<!-- Pokretanje Gazebo svijeta -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find x100_gazebo)/worlds/x100_world.world"/>
     <arg name="paused" value="false"/>
@@ -14,21 +21,19 @@
   </include>  
 
 
-  <group ns = "x100">
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find x100_gazebo)/urdf/x100.urdf.xacro" />
-
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
-      <param name="publish_frequency" type="double" value="50.0" />
-      <param name="tf_prefix" value="x100" />
-    </node>
-
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model X100 -x $(arg  x100_x_pos) -y $(arg x100_y_pos) -z $(arg x100_z_pos) -Y $(arg x100_yaw) -param robot_description" />
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+<!-- Pokretanje čvorova za simulaciju X100 robota u Gazebu -->
+<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+	<param name="publish_frequency" type="double" value="50.0" />
+      	<param name="tf_prefix" value="" />
+</node>
+<param name="robot_description" command="$(find xacro)/xacro --inorder $(find x100_gazebo)/urdf/x100.urdf.xacro" />
+<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model X100 -x $(arg  x100_x_pos) -y $(arg x100_y_pos) -z $(arg x100_z_pos) -Y $(arg x100_yaw) -param robot_description" />
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     	<param name="use_gui" value="False"/>
-    </node>
-  </group>
+</node>
     
- 
 
+<!-- Pokretanje RVIZA --> 	
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find x100_gazebo)/rviz/x100_config.rviz"/>
   
 </launch>

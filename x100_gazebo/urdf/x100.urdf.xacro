@@ -92,7 +92,7 @@
       <commandTopic>/cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>x100/base_link</robotBaseFrame>
+      <robotBaseFrame>/base_link</robotBaseFrame>
       <broadcastTF>true</broadcastTF>
     </plugin>
   </gazebo>
