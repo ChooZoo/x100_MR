@@ -5,7 +5,7 @@ More about x100: https://www.xmachines.ai/x100
 Main launch file is using ROS package pointcloud_to_laserscan. 
 To install it (noetic version) use:
 
-sudo apt install ros-noetic-pointcloud-to-laserscan
+$ sudo apt install ros-noetic-pointcloud-to-laserscan
 
 # Usage
 
