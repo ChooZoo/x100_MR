@@ -1,2 +1,4 @@
 # x100_MR
-Gazebo model x100 robota sa Velodyne laserom i custom svijetom
+Several packages for ROS (noetic) used for Gazebo simulation of xmachines x100 UGV in a custom world.
+
+# 
