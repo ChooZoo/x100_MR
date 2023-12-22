@@ -8,7 +8,6 @@ Panels:
         - /Status1
         - /PointCloud21
         - /LaserScan1
-        - /LaserScan1/Status1
       Splitter Ratio: 0.5
     Tree Height: 216
   - Class: rviz/Selection
@@ -121,7 +120,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: Intensity
       Decay Time: 0
-      Enabled: false
+      Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Min Color: 0; 0; 0
@@ -136,7 +135,7 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: false
+      Value: true
     - Class: rviz/TF
       Enabled: true
       Filter (blacklist): ""
@@ -242,7 +241,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10
+      Distance: 11.640596389770508
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -258,9 +257,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4897974133491516
+      Pitch: 1.3547964096069336
       Target Frame: <Fixed Frame>
-      Yaw: 5.133571147918701
+      Yaw: 3.0303955078125
     Saved: ~
 Window Geometry:
   Displays:
@@ -278,5 +277,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1048
-  X: 699
-  Y: 144
+  X: 977
+  Y: 131

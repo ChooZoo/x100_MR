@@ -1,16 +1,16 @@
-<!-- autor: Tarik Pozderac -->
+<!-- author: Tarik Pozderac -->
 
 <launch>
 
 
-<!-- Pocetna pozicija X100 robota -->
+<!-- initial position X100 robot -->
   <arg name="x100_x_pos" default=" 0.5"/>
   <arg name="x100_y_pos" default=" 3.0"/>
   <arg name="x100_z_pos" default=" 0.0"/>
   <arg name="x100_yaw"   default=" 0.0"/>
 
 
-<!-- Pokretanje Gazebo svijeta -->
+<!-- running Gazebo world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find x100_gazebo)/worlds/x100_world.world"/>
     <arg name="paused" value="false"/>
@@ -21,7 +21,7 @@
   </include>  
 
 
-<!-- Pokretanje čvorova za simulaciju X100 robota u Gazebu -->
+<!-- running Gazebo simulation of X100 robot -->
 <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
 	<param name="publish_frequency" type="double" value="50.0" />
       	<param name="tf_prefix" value="" />
@@ -33,7 +33,18 @@
 </node>
     
 
-<!-- Pokretanje RVIZA --> 	
+<!-- running Rviz --> 	
 <node name="rviz" pkg="rviz" type="rviz" args="-d $(find x100_gazebo)/rviz/x100_config.rviz"/>
-  
+
+
+<!-- running pointcloud to laserscan --> 	
+<remap from="/cloud_in" to="/velodyne_points"/>
+<node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="moj_node" output="screen">
+	<param name="min_height" type="double" value="0.0" />
+      	<param name="max_height" type="double" value="0.2" />
+      	<param name="angle_min" type="double" value="-3.14" />
+      	<param name="angle_max" type="double" value="3.14" />
+</node>  
+
+
 </launch>
