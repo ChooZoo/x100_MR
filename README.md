@@ -11,15 +11,15 @@ sudo apt install ros-noetic-pointcloud-to-laserscan
 
 Clone files in src folder of your ROS workspace for example:
 
-cd ~/catkin_ws/src
+$ cd ~/catkin_ws/src
 
-git clone https://github.com/ChooZoo/x100_MR.git
+$ git clone https://github.com/ChooZoo/x100_MR.git
 
 Than run catkin_make from your worskpace:
 
-cd ~/catkin_ws
+$ cd ~/catkin_ws
 
-catkin_make
+$ catkin_make
 
 Run the main launch file using:
 
