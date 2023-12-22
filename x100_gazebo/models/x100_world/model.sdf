@@ -4,234 +4,13 @@
     <model name='ros_symbol'>
       <static>1</static>
       <link name='symbol'>
-        <collision name='one'>
-          <pose>-5 0 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-
-        <visual name='one'>
-          <pose>-5 0 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/White</name>
-            </script>
-          </material>
-        </visual>
-
-
-        <collision name='two'>
-          <pose>-3 -4 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-
-        <visual name='two'>
-          <pose>-3 -4 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/White</name>
-            </script>
-          </material>
-        </visual>
-
-
-        <collision name='three'>
-          <pose>3 -4 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-
-        <visual name='three'>
-          <pose>3 -4 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/White</name>
-            </script>
-          </material>
-        </visual>
-
-
-        <collision name='four'>
-          <pose>5 0 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-
-        <visual name='four'>
-          <pose>5 0 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/White</name>
-            </script>
-          </material>
-        </visual>
-
-
-        <collision name='five'>
-          <pose>3 4 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-
-        <visual name='five'>
-          <pose>3 4 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/White</name>
-            </script>
-          </material>
-        </visual>
-
-
-        <collision name='six'>
-          <pose>-3 4 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-
-        <visual name='six'>
-          <pose>-3 4 1 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>2</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/White</name>
-            </script>
-          </material>
-        </visual>
-
-
+        
         <!-- Draw Wall -->
         <collision name='body'>
         <pose>0 0 -0.3 0 0 -1.5708</pose>
         <geometry>
           <mesh>
-            <uri>model://turtlebot3_world/meshes/wall.dae</uri>
+            <uri>model://x100_world/meshes/wall.dae</uri>
             <scale>1 1 0.5</scale>
           </mesh>
         </geometry>
@@ -251,7 +30,7 @@
         <pose>0 0 -0.3 0 0 -1.5708</pose>
         <geometry>
           <mesh>
-            <uri>model://turtlebot3_world/meshes/wall.dae</uri>
+            <uri>model://x100_world/meshes/wall.dae</uri>
             <scale>1 1 0.5</scale>
           </mesh>
         </geometry>
@@ -269,7 +48,7 @@
         <pose>0 0 -0.3 0 0 -1.5708</pose>
         <geometry>
           <mesh>
-            <uri>model://turtlebot3_world/meshes/wall.dae</uri>
+            <uri>model://x100_world/meshes/wall.dae</uri>
             <scale>0.2 0.2 0.5</scale>
           </mesh>
         </geometry>
@@ -289,7 +68,7 @@
         <pose>0 0 -0.3 0 0 -1.5708</pose>
         <geometry>
           <mesh>
-            <uri>model://turtlebot3_world/meshes/wall.dae</uri>
+            <uri>model://x100_world/meshes/wall.dae</uri>
             <scale>0.2 0.2 0.5</scale>
           </mesh>
         </geometry>
